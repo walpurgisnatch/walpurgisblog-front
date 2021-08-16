@@ -19,5 +19,14 @@ export default {
   },
   createArticle(article) {
     return apiClient.post('/api/posts', article)
+  },
+  signUp(name, email, password, status) {
+    return apiClient.post('/api/signUp', name, email, password, status)
+  },
+  logIn(username, password) {
+    return apiClient.post('/api/signIn', username, password)
+  },
+  logOut() {
+    return apiClient.get('/api/logout')
   }
 }
