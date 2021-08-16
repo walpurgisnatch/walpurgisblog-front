@@ -3,12 +3,12 @@
     :default-active="activeIndex"
     class="el-menu-demo"
     mode="horizontal"
-    router="true"
-    @select="handleSelect"
+    router=true
+
   >
       <el-menu-item index="/">Home</el-menu-item>
       <el-menu-item index="profile">Profile</el-menu-item>
-      <el-menu-item class="right-one" index="/signIn">Sign in</el-menu-item>
+      <el-menu-item class="right-one" index="/about">About</el-menu-item>
   </el-menu>
 </template>
 
@@ -19,10 +19,8 @@ export default {
       activeIndex: "Home",
     };
   },
-  methods: {
-    // handleSelect(key) {
-    //   this.$router.push({ name: key })
-    // }
+  methods: {     
+
   },
 };
 </script>

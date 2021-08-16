@@ -18,16 +18,16 @@ const routes = [
     name: 'Profile',
     component: () => import('../views/Profile.vue')
   },
-  {
-    path: '/SignIn',
-    name: 'SignIn',
-    component: () => import('../views/SignIn.vue')
-  },
-  {
-    path: '/SignUp',
-    name: 'SignUp',
-    component: () => import('../views/SignUp.vue')
-  },
+  // {
+  //   path: '/SignIn',
+  //   name: 'SignIn',
+  //   component: () => import('../views/SignIn.vue')
+  // },
+  // {
+  //   path: '/SignUp',
+  //   name: 'SignUp',
+  //   component: () => import('../views/SignUp.vue')
+  // },
   {
     path: '/404',
     name: '404',

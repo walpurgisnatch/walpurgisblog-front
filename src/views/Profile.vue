@@ -1,15 +1,18 @@
 <template>
   <div class="profile">
-    <h1 class="title">profile</h1>
+    <SignUp />
   </div>
 </template>
 
+
 <script>
+//import SignIn from '@/components/SignIn.vue'
+import SignUp from '@/components/SignUp.vue'
 
 export default {
-  name: 'Home',
   components: {
-
+//    SignIn,
+    SignUp
   }
 }
 </script>
