@@ -1,4 +1,5 @@
-# walpurgisblog
+# walpurgisblog-front
+Front of the walpurgisblog
 
 ## Project setup
 ```
@@ -21,10 +22,7 @@ npm run lint
 ```
 
 ## Back-end
-https://github.com/Rillatile/Elara
-
-## License 
-Licensed under the MIT License.
+https://github.com/Walpurgisnatch/walpurgisblog
 
 ## Copyright
 Copyright (c) 2021 Walpurgisnatch
