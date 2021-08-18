@@ -1,24 +1,33 @@
 <template>
-<el-card class="box-card" shadow="hover" @click="handle()">
-  <template #header>
-    <div class="card-header">
-      <span>Test one</span>
+  <el-card class="box-card" shadow="hover" @click="handle()">
+    <template #header>
+      <div class="card-header">
+        <span>{{ article.title }}</span>
+      </div>
+    </template>
+    <div>
+      {{ article.body }}
     </div>
-  </template>
-  <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit unde et recusandae ipsum corporis. Sequi non nostrum qui unde ad, illo aliquid minus, optio, reiciendis repellendus provident dolor vero laboriosam!</div>
-</el-card>
+  </el-card>
 </template>
+
 
 <script>
 export default {
+  props: {
+    article: Object
+  },
+  data() {
+    return {
+      
+    }
+  },
   methods: {
     handle() {
-      this.$router.push({ path: "/article/1" })
-    }
-  }
-}
+      this.$router.push({ name: 'Article', params: { id: this.article.id } });
+    },
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

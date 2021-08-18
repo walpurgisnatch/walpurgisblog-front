@@ -3,7 +3,7 @@
     <h1 class="title">Walpurgisblog</h1>
     <el-row :gutter="20">
       <el-col :offset="4" :span="12">
-        <ArticleCard />
+        <ArticleCard v-for="article in articles" :key="article.id" :article="article"/>
       </el-col>
       <el-col :span="6">
         <div class="v1">
@@ -17,13 +17,28 @@
 </template>
 
 <script>
-import ArticleCard from "@/components/ArticleCard.vue";
+import ArticleCard from "@/components/ArticleCard.vue"
+import EventService from "@/services/EventService.js"
 
 export default {
   name: "Home",
   components: {
     ArticleCard,
   },
+  data() {
+    return {
+      articles: []
+    }
+  },
+  created() {
+    EventService.getArticles()
+    .then(response => {
+      this.articles = response.data
+    })
+    .catch(error => {
+      console.log('There was an error: ' + error.response)
+    })
+  }
 };
 </script>
 
