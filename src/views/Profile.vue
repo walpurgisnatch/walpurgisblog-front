@@ -1,20 +1,25 @@
 <template>
   <div class="profile">
-    <SignUp />
+    <el-row :gutter="20">
+      <el-col :span="8" :offset="8">
+        <SignIn />
+        <br />
+        <SignUp />
+      </el-col>
+    </el-row>
   </div>
 </template>
 
-
 <script>
-//import SignIn from '@/components/SignIn.vue'
-import SignUp from '@/components/SignUp.vue'
+import SignUp from "@/components/SignUp.vue";
+import SignIn from "@/components/SignIn.vue";
 
 export default {
   components: {
-//    SignIn,
-    SignUp
-  }
-}
+    SignIn,
+    SignUp,
+  },
+};
 </script>
 
 <style scoped>

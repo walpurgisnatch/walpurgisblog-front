@@ -16,20 +16,21 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import('../views/Profile.vue')
+    component: () => import('../views/Profile.vue')    
   },
-  // {
-  //   path: '/SignIn',
-  //   name: 'SignIn',
-  //   component: () => import('../views/SignIn.vue')
-  // },
-  // {
-  //   path: '/SignUp',
-  //   name: 'SignUp',
-  //   component: () => import('../views/SignUp.vue')
-  // },
   {
-    path: '/404',
+    path: '/article/:id',
+    name: 'Article',
+    component: () => import('../views/Article.vue'),
+    props: true    
+  },
+  {
+    path: '/article/create',
+    name: 'CreateArticle',
+    component: () => import('../views/CreateArticle.vue')
+  },
+  {
+    path: '/:catchAll(.*)',
     name: '404',
     component: () => import('../views/404.vue')
   }
