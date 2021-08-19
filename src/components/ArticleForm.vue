@@ -1,18 +1,20 @@
 <template>
   <div>
     <div class="form">
-      <h2 class="title">{{ Article.title }}</h2>
-      <el-form ref="Article" :model="Article" :rules="rules" label-width="120px">
+      <h2 class="title">{{ article.title }}</h2>
+      <el-form
+        ref="article"
+        :model="article"
+        :rules="rules"
+        label-width="120px"
+      >
         <el-form-item label="Title" prop="title">
-          <el-input
-            v-model="Article.title"
-            placeholder="title"
-          ></el-input>
+          <el-input v-model="article.title" placeholder="title"></el-input>
         </el-form-item>
         <el-form-item label="Body" prop="body">
           <el-input
-          type="textarea"
-            v-model="Article.body"
+            type="textarea"
+            v-model="article.body"
             placeholder="body"
           ></el-input>
         </el-form-item>
@@ -25,30 +27,37 @@
 </template>
 
 <script>
+import EventService from "@/services/EventService.js";
+
 export default {
   data() {
     return {
-      Article: {
+      article: {
         title: "test title",
         body: "",
+        attachments: null,
+        user: 1,
       },
       rules: {
         title: [
           { required: true, message: "Title required.", trigger: "blur" },
         ],
-        body: [
-          { required: true, message: "Body required.", trigger: "blur" },
-        ],
+         body: [{ required: true, message: "Body required.", trigger: "blur" }],
       },
     };
   },
   methods: {
     submit() {
-      this.$refs["Article"].validate((valid) => {
+      this.$refs["article"].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          EventService.createArticle(this.article)
+            .then((response) => {
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log("There was an error: ", error.response);
+            });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

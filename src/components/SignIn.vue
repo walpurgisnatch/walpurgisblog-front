@@ -2,17 +2,17 @@
   <div>
     <div class="form">
       <h2 class="title">Login</h2>
-      <el-form ref="Login" :model="Login" :rules="rules" label-width="120px">
+      <el-form ref="login" :model="login" :rules="rules" label-width="120px">
         <el-form-item label="Username" prop="name">
           <el-input
-            v-model="Login.name"
+            v-model="login.username"
             placeholder="username or email"
           ></el-input>
         </el-form-item>
         <el-form-item label="Password" prop="password">
           <el-input
             type="password"
-            v-model="Login.password"
+            v-model="login.password"
             placeholder="password"
             autocomplete="off"
           ></el-input>
@@ -26,10 +26,12 @@
 </template>
 
 <script>
+import EventService from "@/services/EventService.js";
+
 export default {
   data() {
     return {
-      Login: {
+      login: {
         username: "",
         password: "",
       },
@@ -45,11 +47,16 @@ export default {
   },
   methods: {
     submit() {
-      this.$refs["Login"].validate((valid) => {
+      this.$refs["login"].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          EventService.logIn(this.login)
+            .then((response) => {
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log("There was an error: ", error.response);
+            });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });

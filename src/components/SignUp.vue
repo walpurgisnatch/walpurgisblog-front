@@ -9,7 +9,7 @@
         label-width="120px"
       >
         <el-form-item label="Username" prop="name">
-          <el-input v-model="newUser.name"></el-input>
+          <el-input v-model="newUser.username"></el-input>
         </el-form-item>
         <el-form-item label="Email" prop="email">
           <el-input v-model="newUser.email"></el-input>
@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import EventService from "@/services/EventService.js";
+
 export default {
   data() {
     var confirmPass = (rule, value, callback) => {
@@ -51,14 +53,14 @@ export default {
     };
     return {
       newUser: {
-        name: "",
+        username: "",
         email: "",
         password: "",
         confirm: "",
         status: "",
       },
       rules: {
-        name: [
+        username: [
           { required: true, message: "Username required.", trigger: "blur" },
           { min: 2, message: "At least 2 symbols required.", trigger: "blur" },
         ],
@@ -77,9 +79,14 @@ export default {
     submit() {
       this.$refs["newUser"].validate((valid) => {
         if (valid) {
-          alert("submit!");
+          EventService.signUp(this.newUser)
+            .then((response) => {
+              console.log(response.data);
+            })
+            .catch((error) => {
+              console.log("There was an error: ", error.response);
+            });
         } else {
-          console.log("error submit!!");
           return false;
         }
       });
