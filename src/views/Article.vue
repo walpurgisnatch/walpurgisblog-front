@@ -11,40 +11,56 @@
         <hr />
         <div>{{ commentsTotal }} Comments</div>
         <br />
-        <CommentForm :article="article.id"/>
-        <Comment v-for="comment in article.comments" :key="comment.id" :comment="comment"/>
+        <CommentForm :article="article.id" @updateComments="fetchComments" />
+        <Comment
+          v-for="comment in article.comments"
+          :key="comment.id"
+          :comment="comment"
+        />
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-import EventService from "@/services/EventService.js"
-import Comment from '@/components/Comment.vue'
-import CommentForm from '@/components/CommentForm.vue'
+import EventService from "@/services/EventService.js";
+import Comment from "@/components/Comment.vue";
+import CommentForm from "@/components/CommentForm.vue";
 
 export default {
-  props: ['id'],
+  props: ["id"],
   data() {
     return {
       article: {},
-      commentsTotal: 0      
-    }    
+      commentsTotal: 0,
+    };
   },
   components: {
     Comment,
-    CommentForm
+    CommentForm,
+  },
+  methods: {
+    fetchComments() {
+      EventService.getComments(this.id)
+        .then((response) => {
+          this.article.comments = response.data;
+          this.commentsTotal = this.article.comments.length;
+        })
+        .catch((error) => {
+          console.log("There was an error: ", error.response);
+        });
+    },
   },
   created() {
     EventService.getArticle(this.id)
-    .then(response => {
-      this.article = response.data
-      this.commentsTotal = this.article.comments.length
-    })
-    .catch(error => {
-      console.log('There was an error: ', error.response)
-    })
-  }
+      .then((response) => {
+        this.article = response.data;
+        this.commentsTotal = this.article.comments.length;
+      })
+      .catch((error) => {
+        console.log("There was an error: ", error.response);
+      });
+  },
 };
 </script>
 

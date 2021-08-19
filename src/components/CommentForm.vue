@@ -28,16 +28,16 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js'
+import EventService from "@/services/EventService.js";
 
 export default {
-  props: ['article'],
+  props: ["article"],
   data() {
     return {
       comment: {
         username: "",
         body: "",
-        article: 0
+        article: 0,
       },
       rules: {
         body: [{ required: true, message: "Body required.", trigger: "blur" }],
@@ -48,9 +48,10 @@ export default {
     submit() {
       this.$refs["comment"].validate((valid) => {
         if (valid) {
-          this.comment.article = this.article
-          console.log(this.comment)
-          EventService.createComment(this.comment);
+          this.comment.article = this.article;
+          EventService.createComment(this.comment).then(() => {
+            this.$emit("updateComments");
+          });
         } else {
           return false;
         }

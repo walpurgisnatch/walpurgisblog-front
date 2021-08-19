@@ -30,4 +30,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.box-card {
+  margin-bottom: 25px;
+}
+</style>

@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: 'http://10.24.141.168:3000',
+  baseURL: 'http://0.0.0.0:3000',
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -29,8 +29,8 @@ export default {
   createArticle(article) {
     return apiClient.post('/api/articles', article)
   },
-  getComments() {
-    return apiClient.get('/api/comments')
+  getComments(article) {
+    return apiClient.get('/api/comments/' + article)
   },
   createComment(comment) {
     return apiClient.post('/api/comments', comment)

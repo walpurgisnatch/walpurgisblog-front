@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       article: {
-        title: "test title",
+        title: "",
         body: "",
         attachments: null,
         user: 1,
@@ -52,7 +52,9 @@ export default {
         if (valid) {
           EventService.createArticle(this.article)
             .then((response) => {
-              console.log(response.data);
+              if (response.status == 200) {
+                this.$router.push({ name: 'Article', params: { id: response.data.id } });
+              }
             })
             .catch((error) => {
               console.log("There was an error: ", error.response);
