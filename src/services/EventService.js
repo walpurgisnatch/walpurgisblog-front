@@ -29,6 +29,9 @@ export default {
   createArticle(article) {
     return apiClient.post('/api/articles', article)
   },
+  deleteArticle(article) {
+    return apiClient.delete('/api/article/' + article)
+  },
   getComments(article) {
     return apiClient.get('/api/comments/' + article)
   },
@@ -36,6 +39,6 @@ export default {
     return apiClient.post('/api/comments', comment)
   },
   deleteComment(comment) {
-    return apiClient.delete('/api/comments', comment)
+    return apiClient.delete('/api/comment/' + comment)
   }
 }

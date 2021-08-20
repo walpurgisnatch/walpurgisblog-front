@@ -3,6 +3,7 @@
     <template #header>
       <div class="card-header">
         <span>{{ comment.username }}</span>
+        <el-button type="text" style="float: right" @click="deleteComment">delete</el-button>
       </div>
     </template>
     <div>
@@ -12,6 +13,8 @@
 </template>
 
 <script>
+import EventService from '@/services/EventService.js'
+
 export default {
   props: {
     comment: Object
@@ -19,6 +22,13 @@ export default {
   data() {
     return {
       
+    }
+  },
+  methods: {
+    deleteComment() {
+      EventService.deleteComment(this.comment.id).then(() => {
+        this.$emit("updateComments")
+      })
     }
   }
 }

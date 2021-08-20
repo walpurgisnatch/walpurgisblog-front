@@ -16,6 +16,7 @@
           v-for="comment in article.comments"
           :key="comment.id"
           :comment="comment"
+          @updateComments="fetchComments"
         />
       </el-col>
     </el-row>

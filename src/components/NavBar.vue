@@ -7,7 +7,7 @@
 
   >
       <el-menu-item index="/">Home</el-menu-item>
-      <el-menu-item index="profile">Profile</el-menu-item>
+      <el-menu-item index="/profile">Profile</el-menu-item>
       <el-menu-item class="right-one" index="/about">About</el-menu-item>
   </el-menu>
 </template>

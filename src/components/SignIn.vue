@@ -27,6 +27,7 @@
 
 <script>
 import EventService from "@/services/EventService.js";
+import { mapActions } from 'vuex'
 
 export default {
   data() {
@@ -51,16 +52,17 @@ export default {
         if (valid) {
           EventService.logIn(this.login)
             .then((response) => {
-              console.log(response.data);
+              this.logIn(response.data)              
             })
             .catch((error) => {
-              console.log("There was an error: ", error.response);
+              console.log("There was an error: ", error);
             });
         } else {
           return false;
         }
       });
     },
+    ...mapActions('user', ['logIn'])
   },
 };
 </script>
