@@ -7,7 +7,7 @@
         :rules="rules"
         label-width="120px"
       >
-        <el-form-item label="Username" prop="name">
+        <el-form-item v-if="id == null" label="Username" prop="name">
           <el-input
             v-model="comment.username"
             placeholder="Guest"
@@ -29,6 +29,7 @@
 
 <script>
 import EventService from "@/services/EventService.js";
+import { mapState } from "vuex";
 
 export default {
   props: ["article"],
@@ -49,6 +50,9 @@ export default {
       this.$refs["comment"].validate((valid) => {
         if (valid) {
           this.comment.article = this.article;
+          if (this.username !== null) {
+            this.comment.username = this.username
+          }
           EventService.createComment(this.comment).then(() => {
             this.$emit("updateComments");
           });
@@ -58,6 +62,7 @@ export default {
       });
     },
   },
+  computed: mapState("user", ["token", "id", "username", "role"]),
 };
 </script>
 

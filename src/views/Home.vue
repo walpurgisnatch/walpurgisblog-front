@@ -13,9 +13,6 @@
       <el-col :span="6">
         <div class="v1">
           <div style="margin-left: 50px">
-            <router-link :to="{ name: 'CreateArticle' }">
-              <el-button type="text">Create article</el-button>
-            </router-link>
           </div>
         </div>
       </el-col>

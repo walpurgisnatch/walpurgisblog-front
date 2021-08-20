@@ -3,7 +3,13 @@
     <template #header>
       <div class="card-header">
         <span>{{ comment.username }}</span>
-        <el-button type="text" style="float: right" @click="deleteComment">delete</el-button>
+        <el-button
+          v-if="role === 0"
+          style="float: right"
+          type="text"
+          @click="deleteComment"
+          >delete</el-button
+        >
       </div>
     </template>
     <div>
@@ -13,25 +19,25 @@
 </template>
 
 <script>
-import EventService from '@/services/EventService.js'
+import EventService from "@/services/EventService.js";
+import { mapState } from "vuex";
 
 export default {
   props: {
-    comment: Object
+    comment: Object,
   },
   data() {
-    return {
-      
-    }
+    return {};
   },
   methods: {
     deleteComment() {
       EventService.deleteComment(this.comment.id).then(() => {
-        this.$emit("updateComments")
-      })
-    }
-  }
-}
+        this.$emit("updateComments");
+      });
+    },
+  },
+  computed: mapState("user", ["token", "id", "username", "role"]),
+};
 </script>
 
 <style scoped>

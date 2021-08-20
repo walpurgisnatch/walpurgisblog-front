@@ -20,6 +20,9 @@ export default {
   logOut() {
     return apiClient.get('/logout')
   },
+  getUser(token) {
+    return apiClient.get('/api/user?token=' + token)
+  },
   getArticles() {
     return apiClient.get('/api/articles')
   },

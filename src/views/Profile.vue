@@ -1,34 +1,59 @@
 <template>
   <div class="profile">
-    <el-row :gutter="20">
-      <el-col :span="8" :offset="8">
-        <div v-if="token == null">
+    <div v-if="token == null">
+      <el-row :gutter="20">
+        <el-col :span="8" :offset="8">
           <SignIn />
-        </div>
-        <div v-else>
-          Welcome
-        </div>
-      </el-col>
-    </el-row>
+        </el-col>
+      </el-row>
+    </div>
+    <div v-else>
+      <el-row :gutter="20">
+        <el-col class="v2" :span="3" :offset="4">
+          <div class="avatar">
+          <el-avatar shape="square" :size="150" :src="squareUrl"></el-avatar>
+          </div>
+          <div class="username">{{ username }}</div>
+          <router-link :to="{ name: 'CreateArticle' }">
+            <el-button type="text">Create article</el-button>
+          </router-link>
+        </el-col>
+        <el-col :span="8">
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
 <script>
-// import SignUp from "@/components/SignUp.vue";
 import SignIn from "@/components/SignIn.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
     SignIn,
-    // SignUp,
   },
-  computed: mapState("user", ["token"]),
+  data () {
+    return {
+      squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
+    }
+  },
+  computed: mapState("user", ["token", "id", "username", "role"]),
 };
 </script>
 
 <style scoped>
 .title {
   text-align: center;
+}
+.v2 {
+  border-right: 2px solid #dfdfdf;
+  height: 500px;
+}
+.avatar {
+  margin-bottom: 25px;
+}
+.username {
+  margin-bottom: 15px;
 }
 </style>
