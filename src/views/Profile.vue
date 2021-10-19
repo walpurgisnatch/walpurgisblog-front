@@ -3,7 +3,7 @@
     <div v-if="user == null">
       <el-row :gutter="20">
         <el-col :span="8" :offset="8">
-          <SignIn />          
+          <SignIn />
         </el-col>
       </el-row>
       <el-row :gutter="20">
@@ -16,15 +16,15 @@
       <el-row :gutter="20">
         <el-col class="v2" :span="3" :offset="4">
           <div class="avatar">
-          <el-avatar shape="square" :size="150" :src="squareUrl"></el-avatar>
+            <el-avatar shape="square" :size="150" :src="squareUrl"></el-avatar>
           </div>
-          <div class="username">{{ username }}</div>
+          <div class="username">{{ user.name }}</div>
           <router-link :to="{ name: 'CreateArticle' }">
             <el-button type="text">Create article</el-button>
           </router-link>
+          <el-button type="text" @click="logOut">LogOut</el-button>
         </el-col>
-        <el-col :span="8">
-        </el-col>
+        <el-col :span="8"> </el-col>
       </el-row>
     </div>
   </div>
@@ -32,20 +32,26 @@
 
 <script>
 import SignIn from "@/components/SignIn";
-import SignUp from "@/components/SignUp"
+import SignUp from "@/components/SignUp";
 import { mapState } from "vuex";
 
 export default {
   components: {
     SignIn,
-    SignUp
+    SignUp,
   },
-  data () {
+  data() {
     return {
-      squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-    }
+      squareUrl:
+        "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
+    };
   },
-  computed: mapState("user", ["user"])
+  methods: {
+    logOut() {
+      this.$store.dispatch("user/logOut");
+    },
+  },
+  computed: mapState("user", ["user"]),
 };
 </script>
 

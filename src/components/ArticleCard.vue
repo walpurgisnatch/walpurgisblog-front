@@ -4,7 +4,7 @@
       <div class="card-header">
         <el-button type="text" @click="handle">{{ article.title }}</el-button>
         <el-button
-          v-if="role === 0"
+          v-if="user.role === 0"
           style="float: right"
           type="text"
           @click="deleteArticle"
@@ -39,7 +39,7 @@ export default {
       });
     },
   },
-  computed: mapState("user", ["token", "id", "username", "role"]),
+  computed: mapState("user", ["user"]),
 };
 </script>
 
