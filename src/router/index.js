@@ -16,7 +16,8 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import('../views/Profile.vue')    
+    component: () => import('../views/Profile.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/article/:id',
@@ -46,6 +47,11 @@ export default router
 
 router.beforeEach((routeTo, routeFrom, next) => {
   NProgress.start()
+  const loggedIn = localStorage.getItem('user')
+
+  if(routeTo.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
+      next('/')
+  }
   next()
 })
 

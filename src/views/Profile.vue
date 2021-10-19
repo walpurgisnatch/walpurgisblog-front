@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <div v-if="token == null">
+    <div v-if="user == null">
       <el-row :gutter="20">
         <el-col :span="8" :offset="8">
           <SignIn />
@@ -38,7 +38,7 @@ export default {
       squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
     }
   },
-  computed: mapState("user", ["token", "id", "username", "role"]),
+  computed: mapState("user", "user")
 };
 </script>
 

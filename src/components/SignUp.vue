@@ -82,6 +82,7 @@ export default {
           EventService.signUp(this.newUser)
             .then((response) => {
               console.log(response.data);
+              this.$router.push({ name: 'Profile' })
             })
             .catch((error) => {
               console.log("There was an error: ", error.response);

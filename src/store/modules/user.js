@@ -1,10 +1,9 @@
+import axios from 'axios'
+
 export const namespaced = true
 
 export const state = {
-  token: null,
-  id: null,
-  username: null,
-  role: null
+  user: null
 }
 
 export const mutations = {
@@ -12,26 +11,32 @@ export const mutations = {
     state.token = token;
   },
   SET_DATA(state, user) {
-    state.id = user.id,
-    state.username = user.name,
-    state.role = user.role
+    state.user = user
+    localStorage.setItem('user', JSON.stringify(user))
+    axios.defaults.headers.common['Authorization'] = `Bearer ${
+      user.token
+    }`
   },
-  LOG_OUT(state) {
-    state.token = null,
-    state.id = null,
-    state.username = null,
-    state.role = null    
+  LOG_OUT() {
+    localStorage.removeItem('user')
+    location.reload()
   }
 }
 
 export const actions = {
-  logIn({ commit }, token) {
-    commit('SET_TOKEN', token)
+  logIn({ commit }, user) {
+    commit('SET_DATA', user)
   },
-  getData({ commit }, user) {
+  setData({ commit }, user) {
     commit('SET_DATA', user)
   },
   logout({ commit }) {
     commit('LOG_OUT')
+  }
+}
+
+export const getters = {
+  loggedIn (state) {
+    return !!state.user
   }
 }

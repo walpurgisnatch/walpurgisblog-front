@@ -53,14 +53,14 @@ export default {
           EventService.logIn(this.login)
             .then((response) => {
               this.logIn(response.data);
-              EventService.getUser(response.data)
-                .then((resp) => {
-                  console.log(resp.data)
-                  this.getData(resp.data);
-                })
-                .catch((error) => {
-                  console.log("There was an error: ", error);
-                });
+              // EventService.getUser(response.data)
+              //   .then((resp) => {
+              //     console.log(resp.data)
+              //     this.setData(resp.data);
+              //   })
+              //   .catch((error) => {
+              //     console.log("There was an error: ", error);
+              //   });
             })
             .catch((error) => {
               console.log("There was an error: ", error);
