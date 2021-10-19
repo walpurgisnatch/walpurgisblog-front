@@ -30,7 +30,7 @@ export const actions = {
   setData({ commit }, user) {
     commit('SET_DATA', user)
   },
-  logout({ commit }) {
+  logOut({ commit }) {
     commit('LOG_OUT')
   }
 }

@@ -3,7 +3,12 @@
     <div v-if="user == null">
       <el-row :gutter="20">
         <el-col :span="8" :offset="8">
-          <SignIn />
+          <SignIn />          
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="8" :offset="8">
+          <SignUp />
         </el-col>
       </el-row>
     </div>
@@ -26,19 +31,21 @@
 </template>
 
 <script>
-import SignIn from "@/components/SignIn.vue";
+import SignIn from "@/components/SignIn";
+import SignUp from "@/components/SignUp"
 import { mapState } from "vuex";
 
 export default {
   components: {
     SignIn,
+    SignUp
   },
   data () {
     return {
       squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
     }
   },
-  computed: mapState("user", "user")
+  computed: mapState("user", ["user"])
 };
 </script>
 
