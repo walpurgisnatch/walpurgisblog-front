@@ -52,15 +52,7 @@ export default {
         if (valid) {
           EventService.logIn(this.login)
             .then((response) => {
-              this.logIn(response.data);
-              // EventService.getUser(response.data)
-              //   .then((resp) => {
-              //     console.log(resp.data)
-              //     this.setData(resp.data);
-              //   })
-              //   .catch((error) => {
-              //     console.log("There was an error: ", error);
-              //   });
+              this.logIn(response.data)
             })
             .catch((error) => {
               console.log("There was an error: ", error);

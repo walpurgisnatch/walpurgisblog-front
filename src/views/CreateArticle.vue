@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row :gutter="20">
-      <el-col :span="8" :offset="8">
+      <el-col :span="16" :offset="4">
         <ArticleForm />
       </el-col>
     </el-row>

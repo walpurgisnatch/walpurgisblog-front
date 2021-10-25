@@ -1,28 +1,8 @@
 <template>
   <div>
-    <div class="form">
-      <h2 class="title">{{ article.title }}</h2>
-      <el-form
-        ref="article"
-        :model="article"
-        :rules="rules"
-        label-width="120px"
-      >
-        <el-form-item label="Title" prop="title">
-          <el-input v-model="article.title" placeholder="title"></el-input>
-        </el-form-item>
-        <el-form-item label="Body" prop="body">
-          <el-input
-            type="textarea"
-            v-model="article.body"
-            placeholder="body"
-          ></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submit">Create</el-button>
-        </el-form-item>
-      </el-form>
-    </div>
+    <el-button type="primary" @click="submit">Create</el-button>
+    <h2 class="title">{{ header }}</h2>
+    <textarea v-model="article.body" class="article" />
   </div>
 </template>
 
@@ -39,30 +19,33 @@ export default {
         user: 1,
       },
       rules: {
-        title: [
-          { required: true, message: "Title required.", trigger: "blur" },
-        ],
-         body: [{ required: true, message: "Body required.", trigger: "blur" }],
+        body: [{ required: true, message: "Body required.", trigger: "blur" }],
       },
     };
   },
   methods: {
+    setTitle() {
+      this.article.title = this.header;
+    },
     submit() {
-      this.$refs["article"].validate((valid) => {
-        if (valid) {
-          EventService.createArticle(this.article)
-            .then((response) => {
-              if (response.status == 200) {
-                this.$router.push({ name: 'Article', params: { id: response.data.id } });
-              }
-            })
-            .catch((error) => {
-              console.log("There was an error: ", error);
+      this.setTitle();
+      EventService.createArticle(this.article)
+        .then((response) => {
+          if (response.status == 200) {
+            this.$router.push({
+              name: "Article",
+              params: { id: response.data.id },
             });
-        } else {
-          return false;
-        }
-      });
+          }
+        })
+        .catch((error) => {
+          console.log("There was an error: ", error);
+        });
+    },
+  },
+  computed: {
+    header: function() {
+      return this.article.body.split("\n")[0];
     },
   },
 };
@@ -73,7 +56,20 @@ export default {
   text-align: center;
   margin-bottom: 50px;
 }
+.article {
+  margin: 0 25px 25px;
+  height: 400px;
+  width: 100%;
+  border: none;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.05);
+}
+.article:focus {
+  border: none;
+  outline: none;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
 .form {
+  width: 100%;
   border: 1px solid #dfdfdf;
   border-radius: 7px;
   padding-right: 40px;

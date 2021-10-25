@@ -7,9 +7,6 @@ export const state = {
 }
 
 export const mutations = {
-  SET_TOKEN(state, token) {
-    state.token = token;
-  },
   SET_DATA(state, user) {
     state.user = user
     localStorage.setItem('user', JSON.stringify(user))
