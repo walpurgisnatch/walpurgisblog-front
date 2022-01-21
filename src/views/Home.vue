@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1 class="title">Walpurgisblog</h1>
+    <h1 class="title">Blog</h1>
     <el-row :gutter="20">
       <el-col :offset="4" :span="12">
         <ArticleCard

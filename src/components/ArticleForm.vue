@@ -29,6 +29,7 @@ export default {
     },
     submit() {
       this.setTitle();
+      this.article.body = this.article.body.slice(this.header.length + 1)
       EventService.createArticle(this.article)
         .then((response) => {
           if (response.status == 200) {

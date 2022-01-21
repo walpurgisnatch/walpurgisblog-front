@@ -4,7 +4,7 @@
       <div class="card-header">
         <el-button type="text" @click="handle">{{ article.title }}</el-button>
         <el-button
-          v-if="user.role === 0"
+          v-if="user && user.role === 0"
           style="float: right"
           type="text"
           @click="deleteArticle"

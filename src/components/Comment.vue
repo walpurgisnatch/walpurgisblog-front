@@ -2,14 +2,12 @@
   <el-card class="box-card" shadow="none">
     <template #header>
       <div class="card-header">
-        <span>{{ comment.username }}</span>
+        <span class="username">{{ comment.username }}</span>
         <el-button
-          v-if="role === 0"
-          style="float: right"
+          v-if="user && user.role === 0"
           type="text"
           @click="deleteComment"
-          >delete</el-button
-        >
+          >delete</el-button>
       </div>
     </template>
     <div>
@@ -36,12 +34,19 @@ export default {
       });
     },
   },
-  computed: mapState("user", ["token", "id", "username", "role"]),
+  computed: mapState("user", ["user"]),
 };
 </script>
 
 <style scoped>
 .box-card {
   margin-bottom: 15px;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.username {
+  margin: auto 0;
 }
 </style>

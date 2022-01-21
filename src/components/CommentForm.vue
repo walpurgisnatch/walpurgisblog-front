@@ -50,8 +50,10 @@ export default {
       this.$refs["comment"].validate((valid) => {
         if (valid) {
           this.comment.article = this.article;
-          if (this.username !== null) {
-            this.comment.username = this.username
+          if (this.comment.username == "") {
+            if (this.user && this.user.name != null) {
+              this.comment.username = this.user.name;
+            } else this.comment.username = "Guest";
           }
           EventService.createComment(this.comment).then(() => {
             this.$emit("updateComments");
@@ -62,7 +64,7 @@ export default {
       });
     },
   },
-  computed: mapState("user", ["token", "id", "username", "role"]),
+  computed: mapState("user", ["user"]),
 };
 </script>
 
