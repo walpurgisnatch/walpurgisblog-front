@@ -6,11 +6,11 @@
           <SignIn />
         </el-col>
       </el-row>
-      <!-- <el-row :gutter="20">
+      <el-row :gutter="20">
         <el-col :span="8" :offset="8">
           <SignUp />
         </el-col>
-      </el-row> -->
+      </el-row>
     </div>
     <div v-else>
       <el-row :gutter="20">
@@ -46,13 +46,13 @@
 import EventService from "@/services/EventService.js";
 import ArticleCard from "@/components/ArticleCard.vue";
 import SignIn from "@/components/SignIn";
-// import SignUp from "@/components/SignUp";
+ import SignUp from "@/components/SignUp";
 import { mapState } from "vuex";
 
 export default {
   components: {
     SignIn,
-    // SignUp,
+    SignUp,
     ArticleCard,
   },
   data() {

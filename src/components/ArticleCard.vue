@@ -12,8 +12,8 @@
         >
       </div>
     </template>
-    <div>
-      {{ article.body }}
+    <div v-markdown>
+      {{ article.body }} 
     </div>
   </el-card>
 </template>

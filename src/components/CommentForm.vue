@@ -7,7 +7,7 @@
         :rules="rules"
         label-width="120px"
       >
-        <el-form-item v-if="id == null" label="Username" prop="name">
+        <el-form-item v-if="user == null" label="Username" prop="name">
           <el-input
             v-model="comment.username"
             placeholder="Guest"
@@ -20,7 +20,7 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" @click="submit">Submit</el-button>
+          <el-button class="submit-button" type="primary" @click="submit">Submit</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -79,5 +79,8 @@ export default {
   padding-top: 20px;
   padding-right: 20px;
   margin-bottom: 30px;
+}
+.submit-button {
+  margin-left: auto;
 }
 </style>

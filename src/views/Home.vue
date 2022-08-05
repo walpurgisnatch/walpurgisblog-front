@@ -12,7 +12,10 @@
       </el-col>
       <el-col :span="6">
         <div class="v1">
-          <div style="margin-left: 50px">
+          <div style="margin-left: 25px">
+          <a class="tag" href="#">All</a>
+          <a class="tag" href="#">News</a>
+          <a class="tag" href="#">Articles</a>
           </div>
         </div>
       </el-col>
@@ -51,7 +54,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .title {
   text-align: center;
   margin-bottom: 50px;
@@ -60,5 +63,17 @@ export default {
 .v1 {
   border-left: 2px solid #dfdfdf;
   height: 500px;
+}
+
+.tag {
+  color: #909399;
+  text-decoration: none;
+
+  display: block;
+  margin-bottom: 15px;
+
+  &:hover {
+    color: black;
+  }
 }
 </style>

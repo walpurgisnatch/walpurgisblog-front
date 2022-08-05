@@ -2,7 +2,7 @@
   <div>
     <el-row :gutter="20">
       <el-col :offset="6" :span="12">
-        <h1 class="title">{{ article.title }}</h1>
+        <h1 class="title" v-markdown>{{ article.title }}</h1>
         <br />
         <div v-markdown>
           {{ article.body }}
@@ -41,11 +41,19 @@ export default {
     CommentForm,
   },
   methods: {
+    setCommentsTotal() {
+      const comments = this.article.comments;
+      if (comments) {
+        this.commentsTotal = comments.length;
+      } else {
+        0;
+      }
+    },
     fetchComments() {
       EventService.getComments(this.id)
         .then((response) => {
           this.article.comments = response.data;
-          this.commentsTotal = this.article.comments.length;
+          this.setCommentsTotal();
         })
         .catch((error) => {
           console.log("There was an error: ", error.response);
@@ -56,10 +64,10 @@ export default {
     EventService.getArticle(this.id)
       .then((response) => {
         this.article = response.data;
-        this.commentsTotal = this.article.comments.length;
+        this.setCommentsTotal();
       })
       .catch((error) => {
-        console.log("There was an error: ", error.response);
+        console.log("There was an error: ", error);
       });
   },
 };

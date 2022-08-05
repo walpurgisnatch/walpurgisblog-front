@@ -1,8 +1,8 @@
 <template>
   <div>
-    <el-button type="primary" @click="submit">Create</el-button>
     <h2 class="title">{{ header }}</h2>
     <textarea v-model="article.body" class="article" />
+    <el-button type="primary" @click="submit">Create</el-button>
   </div>
 </template>
 
