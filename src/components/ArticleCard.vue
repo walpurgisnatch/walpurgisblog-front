@@ -10,6 +10,13 @@
           @click="deleteArticle"
           >delete</el-button
         >
+        <el-button
+          v-if="user && user.role === 0"
+          style="float: right"
+          type="text"
+          @click="editArticle"
+          >edit</el-button
+        >
       </div>
     </template>
     <div v-markdown>
@@ -38,6 +45,9 @@ export default {
         this.$emit("updateArticles");
       });
     },
+    editArticle() {
+      this.$router.push({ name: "EditArticle", params: { id: this.article.id } });
+    }
   },
   computed: mapState("user", ["user"]),
 };

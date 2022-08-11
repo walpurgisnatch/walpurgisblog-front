@@ -31,6 +31,12 @@ const routes = [
     component: () => import('../views/CreateArticle.vue')
   },
   {
+    path: '/article/:id/edit',
+    name: 'EditArticle',
+    component: () => import('../views/EditArticle.vue'),
+    props: true
+  },
+  {
     path: '/:catchAll(.*)',
     name: '404',
     component: () => import('../views/404.vue')

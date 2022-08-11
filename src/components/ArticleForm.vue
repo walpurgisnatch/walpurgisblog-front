@@ -10,6 +10,7 @@
 import EventService from "@/services/EventService.js";
 
 export default {
+  props: ["previous"],
   data() {
     return {
       article: {
@@ -48,6 +49,12 @@ export default {
     header: function() {
       return this.article.body.split("\n")[0];
     },
+  },
+  created() {
+    if (this.previous) {
+      this.article = this.previous;
+      this.article.body = this.article.title + this.article.body;
+    }
   },
 };
 </script>
