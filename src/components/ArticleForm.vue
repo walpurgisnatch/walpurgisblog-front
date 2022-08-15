@@ -30,23 +30,36 @@ export default {
     },
     submit() {
       this.setTitle();
-      this.article.body = this.article.body.slice(this.header.length + 1)
-      EventService.createArticle(this.article)
-        .then((response) => {
-          if (response.status == 200) {
-            this.$router.push({
-              name: "Article",
-              params: { id: response.data.id },
-            });
-          }
-        })
-        .catch((error) => {
-          console.log("There was an error: ", error);
+      this.article.body = this.article.body.slice(this.header.length + 1);
+      if (this.previous) {
+        EventService.updateArticle(this.article)
+          .then((response) => {
+            this.redirect(response);
+          })
+          .catch((error) => {
+            console.log("There was an error: ", error);
+          });
+      } else {
+        EventService.createArticle(this.article)
+          .then((response) => {
+            this.redirect(response);
+          })
+          .catch((error) => {
+            console.log("There was an error: ", error);
+          });
+      }
+    },
+    redirect(response) {
+      if (response.status == 200) {
+        this.$router.push({
+          name: "Article",
+          params: { id: response.data.id },
         });
+      }
     },
   },
   computed: {
-    header: function() {
+    header: function () {
       return this.article.body.split("\n")[0];
     },
   },

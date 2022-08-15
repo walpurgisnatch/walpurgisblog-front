@@ -19,7 +19,7 @@
         >
       </div>
     </template>
-    <div v-markdown>
+    <div v-markdown class="preview">
       {{ article.body }} 
     </div>
   </el-card>
@@ -56,5 +56,10 @@ export default {
 <style scoped>
 .box-card {
   margin-bottom: 25px;
+}
+.preview {
+  max-height: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

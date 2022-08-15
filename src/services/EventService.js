@@ -32,6 +32,9 @@ export default {
   createArticle(article) {
     return apiClient.post('/api/articles', article)
   },
+  updateArticle(article) {
+    return apiClient.post('/api/article/' + article.id, article)
+  },
   deleteArticle(article) {
     return apiClient.delete('/api/article/' + article)
   },
